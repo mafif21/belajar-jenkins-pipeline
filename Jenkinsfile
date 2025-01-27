@@ -8,12 +8,18 @@ pipeline {
         stage("build") {
             steps {
                 echo ("Get All Depedencies...")
+                echo ("build 1")
+                echo ("build 2")
+                echo ("build 3")
             }
         }
 
         stage("test") {
             steps {
                 echo ("Unit test starting...")
+                echo ("ut 1")
+                echo ("ut 2")
+                echo ("ut 3")
             }
         }
 

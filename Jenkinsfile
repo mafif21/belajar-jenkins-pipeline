@@ -10,7 +10,8 @@ pipeline {
                 echo ("Get All Depedencies...")
                 echo ("build 1")
                 echo ("build 2")
-                echo ("build 3")
+                sleep(2)
+                echo ("build finish")
             }
         }
 

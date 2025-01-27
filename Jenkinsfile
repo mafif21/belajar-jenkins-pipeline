@@ -14,6 +14,7 @@ pipeline {
         stage("test") {
             steps {
                 echo ("Unit test starting...")
+                sh("error")
             }
         }
 

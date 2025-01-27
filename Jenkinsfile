@@ -10,6 +10,18 @@ pipeline {
                 echo ("Get All Depedencies...")
             }
         }
+
+        stage("test") {
+            steps {
+                echo ("Unit test starting...")
+            }
+        }
+
+        stage("deploy") {
+            steps {
+                echo ("Deploy to openshift")
+            }
+        }
     }
     post {
         always {

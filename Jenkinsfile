@@ -16,6 +16,22 @@ pipeline {
         password(name: 'SECRET', defaultValue: '', description: 'Encrypt key')
     }
     stages {
+        stage("parameter") {
+            agent {
+                node {
+                    label "linux && java11"
+                }
+            }
+
+            steps {
+                echo "Hello ${PARAMS.NAME}"
+                echo "You are: ${PARAMS.DESCRIPTION}"
+                echo "Want to deploy: ${PARAMS.DEPLOY}"
+                echo "Social Media: ${PARAMS.SOCIAL_MEDIA}"
+                echo "Password: ${PARAMS.SECRET}"
+            }
+        }
+        
         stage("prepare") {
             environment {
                 APP = credentials("lelegoreng-password")

@@ -6,6 +6,10 @@ pipeline {
     }
     stages {
         stage("prepare") {
+            environment {
+                APP = credentials("lelegoreng-password")
+            }
+
             agent {
                 node {
                     label "linux && java11"
@@ -13,6 +17,8 @@ pipeline {
             }
 
             steps {
+                echo "Username: ${APP.USR}"
+                echo "Password: ${APP.PSW}"
                 echo "Author: ${env.AUTHOR}"
                 echo "Email: ${env.EMAIL}"
                 echo "Start job: ${env.JOB_NAME}"
@@ -46,7 +52,7 @@ pipeline {
                     label "linux && java11"
                 }
             }
-            
+
             steps {
                 script {
                     def data = [

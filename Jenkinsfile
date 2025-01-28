@@ -7,26 +7,23 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                echo ("Get All Depedencies...")
-                echo ("build 1")
-                echo ("build 2")
-                sleep(2)
-                echo ("build finish")
+                echo "Get All Depedencies..."
+                sh "./mvnw clean compile test-compile"
+                echo "Finish build"
             }
         }
 
         stage("test") {
             steps {
-                echo ("Unit test starting...")
-                echo ("ut 1")
-                echo ("ut 2")
-                echo ("ut 3")
+                echo "Unit test starting..."
+                sh "./mvnw test"
+                echo "Finish test"
             }
         }
 
         stage("deploy") {
             steps {
-                echo ("Deploy to openshift")
+                echo "Deploy to openshift"
             }
         }
     }

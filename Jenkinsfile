@@ -121,6 +121,24 @@ pipeline {
                 echo "Deploy to staging ${TARGET_ENV}"
             }
         }
+
+        stage("release") {
+            when {
+                expression {
+                    return params.DEPLOY
+                }
+            }
+
+            agent {
+                node {
+                    label "linux && java11"
+                }
+            }
+
+            steps {
+                echo "Release to openshift with new version"
+            }            
+        }
     }
     post {
         always {

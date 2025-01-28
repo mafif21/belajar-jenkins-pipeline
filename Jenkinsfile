@@ -41,25 +41,56 @@ pipeline {
             environment {
                 APP = credentials("lelegoreng-password")
             }
+            
+            failFast true
 
-            agent {
-                node {
-                    label "linux && java11"
-                }
-            }
+            // agent {
+            //     node {
+            //         label "linux && java11"
+            //     }
+            // }
 
-            stages {
-                stage("java prepare") {
+            // pararel
+            parallel {
+                stage("Prepare java") {
+                    agent {
+                        node {
+                            label "linux && java11"
+                        }
+                    }
+
                     steps {
-                        echo "Prepare for java environment"
-                    }
+                        echo "prepare java"
+                    } 
                 }
-                stage("maven prepare") {
-                    steps{
-                        echo "Prepare for maven environment to support java"
+
+                stage("Prepare maven") {
+                    agent {
+                        node {
+                            label "linux && java11"
+                        }
                     }
+
+                    steps {
+                        echo "prepare maven"
+                    } 
                 }
             }
+
+            // sequential
+            // stages {
+            //     stage("java prepare") {
+            //         steps {
+            //             echo "Prepare for java environment"
+            //         }
+            //     }
+            //     stage("maven prepare") {
+            //         steps{
+            //             echo "Prepare for maven environment to support java"
+            //         }
+            //     }
+            // }
+
             // steps {
             //     echo "Username: ${APP_USR}"
             //     echo "Password: ${APP_PSW}"

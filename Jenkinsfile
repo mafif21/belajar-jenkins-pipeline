@@ -102,8 +102,23 @@ pipeline {
         }
 
         stage("deploy") {
+            input {
+                message "Can we deploy?"
+                ok "Yes, of course"
+                submitter "Muhammad,Afif"
+                parameters {
+                    choice(name: "TARGET_ENV", choices: ["DEV", "QA", "PROD"], description: "Staging to deploy")
+                }
+            }
+
+            agent {
+                node {
+                    label "linux && java11"
+                }
+            }
+
             steps {
-                echo "Deploy to openshift"
+                echo "Deploy to staging ${TARGET_ENV}"
             }
         }
     }

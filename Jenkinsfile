@@ -22,6 +22,12 @@ pipeline {
         }
 
         stage("build") {
+            agent {
+                node {
+                    label "linux && java11"
+                }
+            }
+
             steps {
                 script {
                     for (int i = 0; i < 5; i++) {
@@ -40,7 +46,7 @@ pipeline {
                     label "linux && java11"
                 }
             }
-
+            
             steps {
                 script {
                     def data = [
@@ -57,12 +63,6 @@ pipeline {
         }
 
         stage("deploy") {
-            agent {
-                node {
-                    label "linux && java11"
-                }
-            }
-            
             steps {
                 echo "Deploy to openshift"
             }

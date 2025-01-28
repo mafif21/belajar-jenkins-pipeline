@@ -1,12 +1,21 @@
 pipeline {
     agent none
     stages {
-        stage("build") {
+        stage("prepate") {
             agent {
                 node {
                     label "linux && java11"
                 }
             }
+
+            steps {
+                echo "Start job: ${env.JOB_NAME}"
+                echo "Start build: ${env.BUILD_NUMBER}"
+                echo "Branch name: ${env.BRANCH_NAME}"
+            }
+        }
+
+        stage("build") {
             steps {
                 script {
                     for (int i = 0; i < 5; i++) {
@@ -20,11 +29,6 @@ pipeline {
         }
 
         stage("test") {
-            agent {
-                node {
-                    label "linux && golang11"
-                }
-            }
             steps {
                 script {
                     def data = [

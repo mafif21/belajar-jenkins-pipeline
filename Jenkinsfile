@@ -15,11 +15,11 @@ pipeline {
         choice(name: 'SOCIAL_MEDIA', choices: ["FACEBOOK", "INSTAGRAM", "TWITTER"], description: 'Which social media ?')
         password(name: 'SECRET', defaultValue: '', description: 'Encrypt key')
     }
-    triggers {
+    // triggers {
         // cron("*/2 * * * *")
         // pollSCM("*/5 * * * *")
         // upstream(upstreamProjects: 'job1,job2', threshold: hudson.model.Result.SUCCESS)
-    }
+    // }
     stages {
         stage("parameter") {
             agent {

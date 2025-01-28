@@ -24,14 +24,14 @@ pipeline {
             }
 
             steps {
-                echo "Hello ${PARAMS.NAME}"
-                echo "You are: ${PARAMS.DESCRIPTION}"
-                echo "Want to deploy: ${PARAMS.DEPLOY}"
-                echo "Social Media: ${PARAMS.SOCIAL_MEDIA}"
-                echo "Password: ${PARAMS.SECRET}"
+                echo "Hello ${params.NAME}"
+                echo "You are: ${params.DESCRIPTION}"
+                echo "Want to deploy: ${params.DEPLOY}"
+                echo "Social Media: ${params.SOCIAL_MEDIA}"
+                echo "Password: ${params.SECRET}"
             }
         }
-        
+
         stage("prepare") {
             environment {
                 APP = credentials("lelegoreng-password")

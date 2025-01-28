@@ -17,8 +17,8 @@ pipeline {
             }
 
             steps {
-                echo "Username: ${APP.USR}"
-                echo "Password: ${APP.PSW}"
+                echo "Username: ${APP_USR}"
+                echo "Password: ${APP_PSW}"
                 echo "Author: ${env.AUTHOR}"
                 echo "Email: ${env.EMAIL}"
                 echo "Start job: ${env.JOB_NAME}"

@@ -7,6 +7,11 @@ pipeline {
     stages {
         stage("build") {
             steps {
+                script {
+                    for (int i = 0; i < 5; i++) {
+                        echo "Loading ${i}"
+                    }
+                }
                 echo "Get All Depedencies..."
                 sh "./mvnw clean compile test-compile"
                 echo "Finish build"

@@ -8,6 +8,13 @@ pipeline {
         disableConcurrentBuilds()
         timeout(time: 10, unit: 'MINUTES')
     }
+    parameters {
+        string(name: 'NAME', defaultValue: 'GUEST', description: 'What is your name ?')
+        text(name: 'DESCRIPTION', defaultValue: '', description: 'Tell me about you ?')
+        booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Need to deploy ?')
+        choice(name: 'SOCIAL_MEDIA', choices: ["FACEBOOK", "INSTAGRAM", "TWITTER"], description: 'Which social media ?')
+        password(name: 'SECRET', defaultValue: '', description: 'Encrypt key')
+    }
     stages {
         stage("prepare") {
             environment {

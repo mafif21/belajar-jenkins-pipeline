@@ -1,7 +1,11 @@
 pipeline {
     agent none
+    environment {
+        AUTHOR = "Muhammad Afif"
+        EMAIL = "afif.maliki21@gmail.com"
+    }
     stages {
-        stage("prepate") {
+        stage("prepare") {
             agent {
                 node {
                     label "linux && java11"
@@ -9,6 +13,8 @@ pipeline {
             }
 
             steps {
+                echo "Author: ${env.AUTHOR}"
+                echo "Email: ${env.EMAIL}"
                 echo "Start job: ${env.JOB_NAME}"
                 echo "Start build: ${env.BUILD_NUMBER}"
                 echo "Branch name: ${env.BRANCH_NAME}"

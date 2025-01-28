@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo "Hello ${params.NAME}"
                 echo "You are: ${params.DESCRIPTION}"
-                echo "Want to deploy: ${params.DEPLOY}"
+                echo "Want to deploy? ${params.DEPLOY ? 'yes': 'no'}"
                 echo "Social Media: ${params.SOCIAL_MEDIA}"
                 echo "Password: ${params.SECRET}"
             }

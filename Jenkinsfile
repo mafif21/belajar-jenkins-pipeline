@@ -48,16 +48,28 @@ pipeline {
                 }
             }
 
-            steps {
-                echo "Username: ${APP_USR}"
-                echo "Password: ${APP_PSW}"
-                sh 'echo "App password : $APP_PSW" > "rahasia.txt"'
-                echo "Author: ${env.AUTHOR}"
-                echo "Email: ${env.EMAIL}"
-                echo "Start job: ${env.JOB_NAME}"
-                echo "Start build: ${env.BUILD_NUMBER}"
-                echo "Branch name: ${env.BRANCH_NAME}"
+            stages {
+                stage("java prepare") {
+                    steps {
+                        echo "Prepare for java environment"
+                    }
+                }
+                stage("maven prepare") {
+                    steps{
+                        echo "Prepare for maven environment to support java"
+                    }
+                }
             }
+            // steps {
+            //     echo "Username: ${APP_USR}"
+            //     echo "Password: ${APP_PSW}"
+            //     sh 'echo "App password : $APP_PSW" > "rahasia.txt"'
+            //     echo "Author: ${env.AUTHOR}"
+            //     echo "Email: ${env.EMAIL}"
+            //     echo "Start job: ${env.JOB_NAME}"
+            //     echo "Start build: ${env.BUILD_NUMBER}"
+            //     echo "Branch name: ${env.BRANCH_NAME}"
+            // }
         }
 
         stage("build") {

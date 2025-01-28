@@ -1,11 +1,12 @@
 pipeline {
-    agent {
-        node {
-            label "linux && java11"
-        }
-    }
+    agent none
     stages {
         stage("build") {
+            agent {
+                node {
+                    label "linux && java11"
+                }
+            }
             steps {
                 script {
                     for (int i = 0; i < 5; i++) {
@@ -19,6 +20,11 @@ pipeline {
         }
 
         stage("test") {
+            agent {
+                node {
+                    label "linux && golang11"
+                }
+            }
             steps {
                 script {
                     def data = [

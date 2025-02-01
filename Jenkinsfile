@@ -33,6 +33,18 @@ pipeline {
                         values "32", "64"
                     }
                 }
+                excludes {
+                    exclude {
+                        axis {
+                            name "OS"
+                            value "mac"
+                        }
+                        axis {
+                            name "ARCH"
+                            value "32"
+                        }
+                    }
+                }
                 stages {
                     stage("OS Setup"){
                         agent {

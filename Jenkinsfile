@@ -224,7 +224,7 @@ pipeline {
                     usernameVariable: "USER",
                     passwordVariable: "PASSWORD"
                 )]){
-                    sh('Release with -u $USER -p $PASSWORD > "release.txt"')
+                    sh('echo "Release with -u $USER -p $PASSWORD" > "release.txt"')
                 }
             }            
         }

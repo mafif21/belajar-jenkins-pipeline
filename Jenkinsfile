@@ -21,6 +21,35 @@ pipeline {
         // upstream(upstreamProjects: 'job1,job2', threshold: hudson.model.Result.SUCCESS)
     // }
     stages {
+        stage("OS Setup"){
+            matrix {
+                axes {
+                    axis {
+                        name "OS"
+                        values "linux","windows","mac"
+                    }
+                    axis {
+                        name "ARCH"
+                        values "32", "64"
+                    }
+                }
+            }
+            stages {
+                stage("OS Setup"){
+                    agent {
+                        node {
+                            label "linux && java11"
+                        }
+                    }
+
+                    steps {
+                        echo "Setup ${OS} ${ARCH}"
+                    }
+                }
+
+            }
+        }
+
         stage("parameter") {
             agent {
                 node {

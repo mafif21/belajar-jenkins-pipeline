@@ -219,7 +219,13 @@ pipeline {
             }
 
             steps {
-                echo "Release to openshift with new version"
+                withCredentials([usernamePassword(
+                    credentialsId: "lelegoreng-password",
+                    usernameVariable: "USER",
+                    passwordVariable: "PASSWORD"
+                )]){
+                    echo 'Release with -u $USER -p $PASSWORD > "release.txt"'
+                }
             }            
         }
     }
